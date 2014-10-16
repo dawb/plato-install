@@ -1,0 +1,41 @@
+{
+    "require": {
+        "php": ">=5.3.2",
+        "silverstripe/cms": "3.1.6",
+        "silverstripe/framework": "3.1.6",
+        "plato-creative/plato-welcome": "dev-master",
+        "colymba/gridfield-bulk-editing-tools": "dev-master",
+        "silverstripe/userforms": "dev-master",
+        "plato-creative/plato-welcome": "dev-master",
+        "undefinedoffset/sortablegridfield": "dev-master",
+        "silverstripe/googlesitemaps": "dev-master",
+        "kinglozzer/metatitle": "dev-master",
+        "unclecheese/betterbuttons": "dev-master"
+    },
+      
+    "config": {
+      "process-timeout": 600	
+    },
+ 
+    "autoload": {
+      "psr-0": {
+          "MyProject": "src/"
+      }
+    },
+ 
+    "autoload": {
+      "psr-0": {
+          "ComposerScript\\Installer" : ""
+      }
+    },
+
+    "scripts": {
+      "post-install-cmd": [
+          "ComposerScript\\Installer::postUpdateCheck",
+          "git clone https://github.com/PlatoCreative/plato-base.git --branch master",
+          "ComposerScript\\Installer::postUpdate",
+          "foundation new themes/default/foundation",
+          "ComposerScript\\Installer::postPackageThemeCleanUp"
+      ]
+    }
+}
