@@ -34,7 +34,7 @@
           "ComposerScript\\Installer::postUpdateCheck",
           "git clone https://github.com/PlatoCreative/plato-base.git --branch master",
           "ComposerScript\\Installer::postUpdate",
-          "foundation new themes/default/foundation",
+          "foundation new themes/default/ff",
           "ComposerScript\\Installer::postPackageThemeCleanUp"
       ]
     }

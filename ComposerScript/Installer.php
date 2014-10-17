@@ -12,12 +12,12 @@ class Installer
       
       // stream for terminal input/output
       $io = $event->getIO();
-      if ($io->askConfirmation("Are you sure you want to install without running 'composer install --no-scripts' (This should never be run in production)?  ", false)) {
+      if ($io->askConfirmation("You are about to run composer install, confirm if you want scripts to run.\nScripts should never be run on a production environment!\nAre you sure you want to install with scripts?? ", false)) {
           // ok, continue on to composer install
           return true;
       }
     
-      echo "All packages have been downloaded but no scripts have been run. *Scripts should never be run in production.*\n";
+      echo "All packages have been downloaded. No scripts were run. *Scripts should never be run in production.*\n";
       
       // exit composer and terminate installation process
       exit;
@@ -48,11 +48,12 @@ class Installer
       $composer = $event->getComposer();
       
       // once all files have moved or deleted we need to start organising the themes directory
-      recurse_copy("themes/default/foundation", "themes/default");
+      recurse_copy("themes/default/ff", "themes/default");
       recurse_copy("themes/default/bower_components", "themes/default/js");
+      recurse_copy("themes/default/js/foundation", "themes/default/foundation"); // foundation does not need to goes into the js folder :/
       
       // files have been moved so lets delete some stuff that we no longer need
-      rmdir_recursive("themes/default/foundation"); // no longer required
+      rmdir_recursive("themes/default/ff"); // no longer required
       rmdir_recursive("themes/default/bower_components"); // no longer required
       rmdir_recursive("themes/default/.git"); // no git thanks!
       unlink("themes/default/.gitignore");
@@ -67,7 +68,7 @@ class Installer
       fopen("themes/default/scss/editor.scss", "w");
       fopen("themes/default/scss/typography.scss", "w");
       
-      echo "Theme has now been organised, woop woop!.\n";
+      echo "Theme has now been organised, woop woop!\n";
       
     }
     
