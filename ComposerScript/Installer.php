@@ -10,17 +10,19 @@ class Installer
     {
       $composer = $event->getComposer();
       
-      // stream for terminal input/output
-      $io = $event->getIO();
-      if ($io->askConfirmation("You are about to run composer install, confirm if you want scripts to run.\nScripts should never be run on a production environment!\nAre you sure you want to install with scripts?? ", false)) {
-          // ok, continue on to composer install
-          return true;
-      }
-    
-      echo "All packages have been downloaded. No scripts were run. *Scripts should never be run in production.*\n";
+      // if the themes folder does exists then obviously we shouldn't be running comoser install with scripts, as they've already been run.
+      if(file_exists("themes")){
+        
+        echo "No scripts have been trigged as we detected the themes directory.\nComposer install has completed but with no scripts.";
+        exit;
       
-      // exit composer and terminate installation process
-      exit;
+      }else{
+        
+        echo "No theme directory was found, composer will run all scripts...";
+        
+        return true;
+        
+      }
       
     }
     
@@ -47,28 +49,30 @@ class Installer
       
       $composer = $event->getComposer();
       
+      $theme = "default";
+      
       // once all files have moved or deleted we need to start organising the themes directory
-      recurse_copy("themes/default/ff", "themes/default");
-      recurse_copy("themes/default/bower_components", "themes/default/js");
-      recurse_copy("themes/default/js/foundation", "themes/default/foundation"); // foundation does not need to goes into the js folder :/
+      recurse_copy("themes/".$theme."/ff", "themes/default");
+      recurse_copy("themes/".$theme."/bower_components", "themes/".$theme."/js");
+      recurse_copy("themes/".$theme."/js/foundation", "themes/".$theme."/foundation"); // foundation does not need to goes into the js folder :/
       
       // files have been moved so lets delete some stuff that we no longer need
-      rmdir_recursive("themes/default/ff"); // no longer required
-      rmdir_recursive("themes/default/bower_components"); // no longer required
-      rmdir_recursive("themes/default/.git"); // no git thanks!
-      unlink("themes/default/.gitignore");
-      unlink("themes/default/bower.json");
-      unlink("themes/default/.bowerrc");
-      unlink("themes/default/humans.txt");
-      unlink("themes/default/README.md");
-      unlink("themes/default/robots.txt");
+      rmdir_recursive("themes/".$theme."/ff"); // no longer required
+      rmdir_recursive("themes/".$theme."/bower_components"); // no longer required
+      rmdir_recursive("themes/".$theme."/.git"); // no git thanks!
+      unlink("themes/".$theme."/.gitignore");
+      unlink("themes/".$theme."/bower.json");
+      unlink("themes/".$theme."/.bowerrc");
+      unlink("themes/".$theme."/humans.txt");
+      unlink("themes/".$theme."/README.md");
+      unlink("themes/".$theme."/robots.txt");
       
       // now we need to create some files to save even more time ;)
-      fopen("themes/default/scss/_layout.scss", "w");
-      fopen("themes/default/scss/editor.scss", "w");
-      fopen("themes/default/scss/typography.scss", "w");
-      
-      echo "Theme has now been organised, woop woop!\n";
+      fopen("themes/".$theme."/scss/_layout.scss", "w");
+      fopen("themes/".$theme."/scss/editor.scss", "w");
+      fopen("themes/".$theme."/scss/typography.scss", "w");
+            
+      echo "Theme has now been organised. Boom!\n";
       
     }
     
