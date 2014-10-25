@@ -1,6 +1,6 @@
 #plato-install#
 
-You must have composer and foundation installed fr this script to run correctly.
+You must have composer and foundation installed for this script to run correctly.
 
 ##How it works:##
 
