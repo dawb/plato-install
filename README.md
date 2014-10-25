@@ -1,16 +1,20 @@
-plato-install
-=============
+#plato-install#
 
-A super simple composer install with custom scripts
+You must have composer and foundation installed fr this script to run correctly.
 
-How it works:
+##How it works:##
 
-1. `composer install` this will grab all all required packages.
-2. Once all packages have downloaded it will then attempted to run all scripts
-3. The first script actually double checks if you want to run all other scripts
-4. The second script will download the plato-base git repo
-5. The third will move the plato-base files/folders in the root directory
-6. Fourth script will download foundation via `foundation new foundation`
-7. Finally the last script will organise foundation into a more usable structure and also creates a few scss files that we ofter use.
+1. `composer install` - this will grab all required packages
+2. Once all packages have downloaded it will then attempt to run the post-install scripts
+3. The first function in he script checks to make sure you don't already have a themes folder (if you do it probably means you have already run install so scripts do not need to be run again.
+4. The second function will download the [plato-base](https://github.com/PlatoCreative/plato-base.git) repo
+5. The next will move the plato-base files/folders in the root directory
+6. After that it will download foundation via `foundation new foundation`
+7. Finally the last script will organise foundation into a more usable structure and also creates a few scss files that we ofter use here at Plato Creative.
 
-This script has been specifically built for plato and how we begin projects.
+####TODO####
+- Make changing the theme name easier e.g. command question?...
+
+*This script has been specifically built for Plato Creative, feel free to customise it to suit your requirments.*
+
+
