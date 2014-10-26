@@ -1,4 +1,4 @@
-#plato-install#
+#Plato Creative - composer script#
 
 You must have composer and foundation installed for this script to run correctly.
 
@@ -13,7 +13,9 @@ You must have composer and foundation installed for this script to run correctly
 7. Finally the last script will organise foundation into a more usable structure and also creates a few scss files that we ofter use here at Plato Creative.
 
 ####TODO####
-- Make changing the theme name easier e.g. command question?...
+- Make changing the theme name easier e.g. via command line...
+- Add grunt to save time compressing files and running time consuming tasks
+- At the end of the script possibly run a start function that triggers a few tasks e.g. compass watch, grunt tasks...
 
 *This script has been specifically built for Plato Creative, feel free to customise it to suit your requirments.*
 
