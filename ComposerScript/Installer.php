@@ -103,8 +103,12 @@ function recurse_copy($src,$dst) {
 function rmdir_recursive($dir) {
     foreach(scandir($dir) as $file) {
         if ('.' === $file || '..' === $file) continue;
-        if (is_dir("$dir/$file")) rmdir_recursive("$dir/$file");
-        else unlink("$dir/$file");
+        if (is_dir("$dir/$file")){
+          rmdir_recursive("$dir/$file");
+        }else{
+          chmod("$dir/$file", 0777);
+          unlink("$dir/$file");
+        } 
     }
     rmdir($dir);
 }
