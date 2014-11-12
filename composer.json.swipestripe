@@ -1,0 +1,59 @@
+{	
+    "repositories": [
+		{
+			"type": "vcs",
+			"url": "git@github.com:silverstripe-labs/silverstripe-payment.git"
+		},
+        {
+            "type": "vcs",
+            "url": "git@github.com:PlatoCreative/silverstripe-swipestripe.git"
+        },
+		{
+            "type": "vcs",
+            "url": "https://github.com/PlatoCreative/silverstripe-swipestripe-category"
+        },
+		{
+            "type": "vcs",
+            "url": "https://github.com/PlatoCreative/silverstripe-swipestripe-addresses"
+        }
+    ],
+	
+	"require": {
+        "php": ">=5.3.2",
+        "silverstripe/cms": "3.1.6",
+        "silverstripe/framework": "3.1.6",
+        "silverstripe/payment": "4.* as 2.1.*@dev",
+        "plato-creative/plato-welcome": "dev-master",
+        "colymba/gridfield-bulk-editing-tools": "dev-master",
+        "silverstripe/userforms": "dev-master",
+        "undefinedoffset/sortablegridfield": "dev-master",
+        "silverstripe/googlesitemaps": "dev-master",
+        "kinglozzer/metatitle": "dev-master",
+        "unclecheese/betterbuttons": "dev-master",
+        "swipestripe/swipestripe-flatfeetax": "2.1.*@dev",
+		    "swipestripe/swipestripe-currency": "2.1.*@dev",
+		    "swipestripe/swipestripe-addresses": "2.1.x-dev",
+		    "silverstripe/payment": "1.0.*"
+    },
+	
+    "config": {
+      "process-timeout": 600	
+    },
+ 
+    "autoload": {
+      "psr-0": {
+          "ComposerScript\\Installer" : ""
+      }
+    },
+
+    "scripts": {
+      "post-install-cmd": [
+          "ComposerScript\\Installer::postUpdateCheck",
+          "git clone https://github.com/PlatoCreative/plato-base.git --branch master",
+          "ComposerScript\\Installer::postUpdate",
+          "foundation new themes/default/ff",
+          "ComposerScript\\Installer::postPackageThemeCleanUp"
+      ]
+    },
+	"minimum-stability": "dev"
+}
