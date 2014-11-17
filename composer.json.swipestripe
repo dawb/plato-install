@@ -10,10 +10,6 @@
         },
 		{
             "type": "vcs",
-            "url": "https://github.com/PlatoCreative/silverstripe-swipestripe-category"
-        },
-		{
-            "type": "vcs",
             "url": "https://github.com/PlatoCreative/silverstripe-swipestripe-addresses"
         }
     ],
